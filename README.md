@@ -52,6 +52,7 @@ The wrapper lazily starts `src/server.mjs` if the API is not up (local URLs only
 | `MEM_HYBRID_GATE` | `30` | if lexical top1 scores ≥ this, skip the vector pass |
 | `MEM_EXPAND` | off | `1` enables query expansion rules |
 | `MEM_EXPAND_FILE` | `config/expand.example.json` | JSON rule table |
+| `MEM_ECHO_FILTER` | on | `0` disables the self-echo filter (a stored user message containing the whole query is pushed out of the top spot) |
 
 ## Schema
 

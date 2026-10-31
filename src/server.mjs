@@ -229,8 +229,14 @@ const search = (q, limit = 5) => lexicalSearch(q, clampLimit(limit));
 async function searchCore(q, limit = 5) {
   limit = clampLimit(limit);
   q = normText(q);
-  const lex = lexicalSearch(q, 50);
-  if (!hybrid || !lex.length) return lex.slice(0, limit);
+  // 归档库里问句本身也是一行，再问一遍它会抢第一。用户消息含整句查询的，先压掉。
+  const dropEcho = (rows) => {
+    if (process.env.MEM_ECHO_FILTER === "0" || q.length < 8) return rows;
+    const kept = rows.filter((r) => !(String(r.content || "").includes(q) && /_user$/.test(r.kind || "")));
+    return kept.length ? kept : rows;
+  };
+  const lex = dropEcho(lexicalSearch(q, 50));
+  if (!hybrid || !lex.length) return dropEcho(lex).slice(0, limit);
   // 词法已经很有把握时不再掺向量，保住关键词检索的锐度
   const gate = Number(process.env.MEM_HYBRID_GATE || 30);
   if (lex[0].score >= gate) return lex.slice(0, limit);
@@ -258,7 +264,7 @@ async function searchCore(q, limit = 5) {
     }
     out.push({ ...row, score: Math.round(s * 100000) / 100 });
   }
-  return out;
+  return dropEcho(out);
 }
 
 async function searchAsync(q, limit = 5) {
