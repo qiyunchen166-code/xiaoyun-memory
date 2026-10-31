@@ -80,6 +80,8 @@ npm test        # node --test test/retrieval.test.mjs test/fts.test.mjs
 
 Tests build a throwaway database in the OS temp dir, so they never touch your data.
 
+More measurements: [`docs/notes/fts5-bigram.md`](docs/notes/fts5-bigram.md), [`docs/notes/hybrid-eval.md`](docs/notes/hybrid-eval.md), and [`docs/lessons.md`](docs/lessons.md).
+
 ## What this is not
 
 - Not a database. It reads an existing SQLite file; writes are your job.
