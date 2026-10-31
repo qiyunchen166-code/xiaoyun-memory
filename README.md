@@ -80,7 +80,18 @@ npm test        # node --test test/retrieval.test.mjs test/fts.test.mjs
 
 Tests build a throwaway database in the OS temp dir, so they never touch your data.
 
-More measurements: [`docs/notes/fts5-bigram.md`](docs/notes/fts5-bigram.md), [`docs/notes/hybrid-eval.md`](docs/notes/hybrid-eval.md), and [`docs/lessons.md`](docs/lessons.md).
+More measurements: [`docs/notes/fts5-bigram.md`](docs/notes/fts5-bigram.md), [`docs/notes/hybrid-eval.md`](docs/notes/hybrid-eval.md), [`docs/notes/sqlite-wal.md`](docs/notes/sqlite-wal.md), and [`docs/lessons.md`](docs/lessons.md).
+
+## Benchmark
+
+`node bench/bench.mjs 500` builds a 500-row synthetic Chinese corpus in a temp dir and runs 200 queries:
+
+```
+rows=500 queries=200
+p50=0.88ms p95=2.08ms max=22.94ms
+```
+
+The index build itself took 43 ms for 500 rows (~0.2 MB).
 
 ## What this is not
 

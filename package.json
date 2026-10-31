@@ -4,11 +4,14 @@
   "description": "A small, local-first memory search service: SQLite FTS5 bigram index + optional vector recall with RRF fusion, plus an MCP stdio wrapper.",
   "type": "module",
   "license": "MIT",
-  "engines": { "node": ">=22.5" },
+  "engines": {
+    "node": ">=23"
+  },
   "scripts": {
     "start": "node src/server.mjs",
     "seed": "node examples/seed.mjs",
-    "test": "node --test test/retrieval.test.mjs test/fts.test.mjs"
+    "test": "node --test test/retrieval.test.mjs test/fts.test.mjs",
+    "bench": "node bench/bench.mjs"
   },
   "optionalDependencies": {
     "@huggingface/transformers": "^3.0.0"
