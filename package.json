@@ -1,0 +1,16 @@
+{
+  "name": "xiaoyun-memory",
+  "version": "0.1.0",
+  "description": "A small, local-first memory search service: SQLite FTS5 bigram index + optional vector recall with RRF fusion, plus an MCP stdio wrapper.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "seed": "node examples/seed.mjs",
+    "test": "node --test test/retrieval.test.mjs test/fts.test.mjs"
+  },
+  "optionalDependencies": {
+    "@huggingface/transformers": "^3.0.0"
+  }
+}

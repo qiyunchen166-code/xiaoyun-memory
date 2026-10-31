@@ -1,0 +1,9 @@
+node_modules/
+*.log
+server.out.log
+server.err.log
+demo.sqlite3
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+.env
